@@ -1,4 +1,5 @@
 # MapReduce_StockHeadlines
+```
 .
 ├── README.md
 ├── build
@@ -11,6 +12,8 @@
     ├── StockCount.java
     ├── WordCount.java
     └── stop-word-list.txt
+
+```
 
 ## 0. 题目描述
 
