@@ -1,6 +1,6 @@
 # MapReduce_StockHeadlines
 ```
-.
+.MapReduce_StockHeadlines
 ├── README.md
 ├── build
 │   ├── StockCount.jar
