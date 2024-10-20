@@ -14,6 +14,32 @@
     └── stop-word-list.txt
 
 ```
+### How to use  
+
+```bash
+# 创建编译目录
+mkdir -p build
+# 编译StockCount.java
+javac -classpath $(hadoop classpath) -source 1.8 -target 1.8 -d build src/StockCount.java
+# 编译WordCount.java
+javac -classpath $(hadoop classpath) -source 1.8 -target 1.8 -d build src/WordCount.java
+
+#打包jar文件：
+jar -cvf build/StockCount.jar -C build/ .
+jar -cvf build/WordCount.jar -C build/ .
+
+# 创建HDFS输入文件夹并上传数据集
+hdfs dfs -mkdir -p /user/hadoop/input
+hdfs dfs -put input/analyst_ratings.csv /user/hadoop/input/
+# 上传stop-words文件到HDFS
+hdfs dfs -put src/stop-word-list.txt /user/hadoop/
+# 运行股票代码统计任务
+hadoop jar build/StockCount.jar StockCount /user/hadoop/input /user/hadoop/output_stock
+# 运行高频单词统计任务
+hadoop jar build/WordCount.jar WordCount /user/hadoop/input /user/hadoop/output_words /user/hadoop/stop-word-list.txt
+
+```
+
 
 ## 0. 题目描述
 
