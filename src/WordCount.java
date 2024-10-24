@@ -44,9 +44,9 @@ public class WordCount {
                 // 对 headline 列进行处理，去掉标点符号，转换为小写
                 if (fields.length >= 3) {
                     String str = "";
-                    for (int i = 1; i < fields.length - 1; i++) {
+                    for (int i = 1; i < fields.length - 2; i++) {
                         str += fields[i];
-                        if (i < fields.length - 2) {
+                        if (i < fields.length - 3) {
                             str += ",";
                         }
                     }
