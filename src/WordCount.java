@@ -40,8 +40,18 @@ public class WordCount {
         public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String[] fields = value.toString().split(",");
             if (fields.length > 1) {
+                String headline = "";
                 // 对 headline 列进行处理，去掉标点符号，转换为小写
-                String headline = fields[1].toLowerCase().replaceAll("[^a-zA-Z ]", " ");
+                if (fields.length >= 3) {
+                    String str = "";
+                    for (int i = 1; i < fields.length - 1; i++) {
+                        str += fields[i];
+                        if (i < fields.length - 2) {
+                            str += ",";
+                        }
+                    }
+                    headline = str.toLowerCase().replaceAll("[^a-zA-Z ]", " ");
+                }
                 for (String token : headline.split("\\s+")) {
                     // 忽略停词和空字符串
                     if (!stopWords.contains(token) && token.length() > 0) {
